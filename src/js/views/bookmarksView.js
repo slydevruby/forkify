@@ -1,5 +1,5 @@
 import { ResultView } from './resultView.js';
-import icons from 'url:../../img/icons.svg'; // parel 2
+import icons from '../../img/icons.svg'; // parel 2
 
 class bookmarksView extends ResultView {
   _parentElement = document.querySelector('.bookmarks__list');

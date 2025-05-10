@@ -1,4 +1,4 @@
-import icons from 'url:../../img/icons.svg'; // parel 2
+import icons from '../../img/icons.svg'; // parel 2
 
 export class View {
   _data;
