@@ -2,11 +2,11 @@
   "name": "forkify",
   "version": "1.0.0",
   "type": "module",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    
+    "build": "parcel build index.html --dist-dir ./dist",
     "lint": "npx eslint $1"
   },
   "author": "",
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "core-js": "^3.41.0",
-    "fractional": "^1.0.0",
     "fracty": "^1.0.12",
     "prettier": "^3.5.3",
     "regenerator-runtime": "^0.14.1",
