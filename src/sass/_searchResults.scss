@@ -1,4 +1,4 @@
-@use "base";
+@use 'base';
 
 .search-results {
   padding: 3rem 0;
@@ -14,6 +14,7 @@
 .pagination {
   margin-top: auto;
   padding: 0 3.5rem;
+  display: flex;
 
   &::after {
     content: '';
@@ -21,13 +22,12 @@
     clear: both;
   }
 
-  &__btn {
-    &--prev {
-      float: left;
-    }
-    &--next {
-      float: right;
-    }
+  &__count {
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: base.$color-primary;
+    font-size: 1.3rem;
   }
 }
 
