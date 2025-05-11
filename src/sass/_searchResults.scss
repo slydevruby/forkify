@@ -1,4 +1,4 @@
-@use "base";
+@use 'base';
 
 .search-results {
   padding: 3rem 0;
@@ -26,17 +26,8 @@
     align-content: center;
     margin-left: auto;
     margin-right: auto;
-  color: base.$color-primary;
-  font-size: 1.3rem;    
-  }
-
-  &__btn {
-    &--prev {
-      // float: left;
-    }
-    &--next {
-      // float: right;
-    }
+    color: base.$color-primary;
+    font-size: 1.3rem;
   }
 }
 
