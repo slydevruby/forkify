@@ -77,15 +77,34 @@ const controlBookmark = function () {
 const controlAddRecipe = async function (newRecipe) {
   try {
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
     recipeView.render(model.state.recipe);
-     setTimeout(function () {
-       addRecipeView.toggleWindow();
-     }, 1000);
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, 1000);
   } catch (err) {
     console.log('EWERR');
     addRecipeView.showError(true, err.message);
   }
+};
+
+const clickOnTime = function () {
+  if (model.state.search.sorting === model.sortingTimeAsc) {
+    model.sortSearchResults(model.sortingTimeDesc);
+  } else {
+    model.sortSearchResults(model.sortingTimeAsc);
+  }
+  resultView.render(model.getSearchResultsPage());
+  paginationView.render(model.state.search);
+};
+
+const clickOnIngredients = function () {
+  if (model.state.search.sorting === model.sortingIngredientsAsc) {
+    model.sortSearchResults(model.sortingIngredientsDesc);
+  } else {
+    model.sortSearchResults(model.sortingIngredientsAsc);
+  }
+  resultView.render(model.getSearchResultsPage());
+  paginationView.render(model.state.search);
 };
 
 const deleteRecipe = function () {
@@ -104,6 +123,9 @@ const init = function () {
   recipeView.setEventHandler(controlRecipes);
   recipeView.setBookmarkHandler(controlBookmark);
   recipeView.setDeleteHandler(deleteRecipe);
+
+  resultView.addTimeClickHandler(clickOnTime);
+  resultView.addIngredientsClickHandler(clickOnIngredients);
 
   searchView.setSearchHandler(controlSearch);
   paginationView.addHandlerClick(controlPagination);

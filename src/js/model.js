@@ -9,9 +9,20 @@ export const state = {
     results: [],
     page: 1,
     resultsPerPage: RES_PER_PAGE,
+    sorting: null,
   },
+
   bookmarks: [],
 };
+
+export const sortingTimeAsc = (a, b) =>
+  +a.details.cooking_time - +b.details.cooking_time;
+export const sortingTimeDesc = (a, b) =>
+  +b.details.cooking_time - +a.details.cooking_time;
+export const sortingIngredientsAsc = (a, b) =>
+  +a.details.ingredients.length - +b.details.ingredients.length;
+export const sortingIngredientsDesc = (a, b) =>
+  +b.details.ingredients.length - +a.details.ingredients.length;
 
 export const loadRecipe = async function (id) {
   const data = await getJSON(API_URL + id);
@@ -23,21 +34,53 @@ export const loadRecipe = async function (id) {
   );
 };
 
+const getDetails = async function (id) {
+  const data = await getJSON(API_URL + id);
+  const { cooking_time, ingredients } = data.data.recipe;
+  return { cooking_time, ingredients };
+};
+
+const getIngredients = function () {
+  const size = Math.floor(Math.random(10) * 10 + 1);
+  const ingredients = [];
+  for (let i = 0; i < size; i++) {
+    ingredients.push(Math.round(Math.random(i) * 10));
+  }
+  return ingredients;
+};
+
+const returnAll = recipes => {
+  const promises = recipes.map(async recipe => {
+    return {
+      id: recipe.id,
+      // details: await getDetails(recipe.id),
+      details: {
+        cooking_time: Math.floor(Math.random(100) * 100),
+        ingredients: getIngredients(),
+      },
+      title: recipe.title,
+      publisher: recipe.publisher,
+      image_url: recipe.image_url,
+    };
+  });
+  return Promise.all(promises);
+};
+
 export const loadSearchResults = async function (query = 'pizza') {
   const url = `${API_URL}?search=${query}`;
   const data = await getJSON(url);
-
   state.search.query = query;
+  const results = await returnAll(data.data.recipes);
+  state.search.results = results;
 
-  state.search.results = data.data.recipes.map(rec => {
-    return {
-      id: rec.id,
-      title: rec.title,
-      publisher: rec.publisher,
-      image_url: rec.image_url,
-    };
-  });
   state.search.page = 1;
+};
+
+export const sortSearchResults = function (sorting = null) {
+  if (sorting) {
+    state.search.results.sort(sorting);
+    state.search.sorting = sorting;
+  }
 };
 
 export const getSearchResultsPage = function (page = state.search.page) {

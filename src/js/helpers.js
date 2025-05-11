@@ -1,4 +1,5 @@
 import { TIMEOUT_SEC } from './config.js';
+import { FOOD_API_KEY } from './config.js';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -33,7 +34,23 @@ export const sendJSON = async function (url, uploadData) {
   return data;
 };
 
+export const foodGetIdByName = async function (name) {
+  const data = await getJSON(`
+    https://api.spoonacular.com/food/ingredients/search?apiKey=${FOOD_API_KEY}&query=${name}&number=1`);
+  return data;
+};
 
+export const foodGetNutritionById = async function (id, amount = 100) {
+  const data = await getJSON(`
+    https://api.spoonacular.com/food/ingredients/${id}/information?apiKey=${FOOD_API_KEY}&amount=${amount}    
+  `);
+  return data;
+};
+
+export const foodGetCalories = function (prod) {
+  // const prod = JSON.parse(json);
+  return prod.nutrition.nutrients.find(item => item.name === 'Calories').amount;
+};
 
 // export const deleteJSON = async function (url, id) {
 //   try {
@@ -50,3 +67,11 @@ export const sendJSON = async function (url, uploadData) {
 //     throw err;
 //   }
 // };
+
+
+
+// const prod = await foodGetIdByName('banana');
+// console.log(prod);
+// const nutrition = await foodGetNutritionById(prod.results[0].id);
+// console.log(nutrition);
+// console.log(foodGetCalories(nutrition));

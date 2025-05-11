@@ -1,9 +1,25 @@
 import { View } from './view.js';
 import icons from '../../img/icons.svg'; // parel 2
 
+
+
 class ResultView extends View {
   _parentElement = document.querySelector('.results');
+  _click_time = document.querySelector('.search__link.time');
+  _click_ingredients = document.querySelector('.search__link.ingredients');
   _errorMessage = 'Cannot find the recipe. Try another one';
+
+  constructor() {
+    super();
+  }
+
+  addTimeClickHandler(handler) {
+    this._click_time.addEventListener('click', handler);
+  }
+
+  addIngredientsClickHandler(handler) {
+    this._click_ingredients.addEventListener('click', handler);
+  }
 
   #markItem(item) {
     const id = window.location.hash.slice(1);
@@ -16,6 +32,8 @@ class ResultView extends View {
           </figure>
           <div class="preview__data">
             <h4 class="preview__title">${item.title}</h4>
+            <span>${item.details.cooking_time}</span>
+            <span>${item.details.ingredients.length}</span>
             <p class="preview__publisher">${item.publisher}</p>
             <div class="preview__user-generated">
               <svg>
@@ -25,7 +43,6 @@ class ResultView extends View {
           </div>
         </a>
       </li>
-
     `;
   }
 

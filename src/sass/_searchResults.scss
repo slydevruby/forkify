@@ -6,6 +6,20 @@
   flex-direction: column;
 }
 
+.search-sort {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search__link {
+  font-size: 1.5rem;
+}
+
+.search__link::after {
+  content: "↑";
+}
+
 .results {
   list-style: none;
   margin-bottom: 2rem;

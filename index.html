@@ -89,6 +89,15 @@
       </header>
 
       <div class="search-results">
+        <div class="search-sort">
+          <p>
+            <a href="#" class='search__link time'>by cooking time</a>
+          </p>
+          <p>
+            <a href="#" class='search__link ingredients'>by ingredients</a>
+          </p>
+
+        </div>
         <ul class="results">
           <!-- 
           <li class="preview">
@@ -263,17 +272,15 @@
     <div class="overlay hidden"></div>
     <div class="add-recipe-window hidden">
       <button class="btn--close-modal">&times;</button>
-        <div class="error2 error hidden2">
-          <div>
-            <svg>
-              <use href="src/img/icons.svg#icon-alert-triangle"></use>
-            </svg>
-          </div>
-          <p class="error--message">error</p>
-        </div>      
+      <div class="error2 error hidden2">
+        <div>
+          <svg>
+            <use href="src/img/icons.svg#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p class="error--message">error</p>
+      </div>
       <form class="upload">
-
-
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
           <label>Title</label>

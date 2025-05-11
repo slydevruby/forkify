@@ -30,6 +30,7 @@ class RecipeView extends View {
   }
 
   _markUp(recipe) {
+    console.log(recipe.ingredients);
     return `<figure class="recipe__fig">
           <img src=${recipe.image_url} alt=${recipe.title} class="recipe__img" />
           <h1 class="recipe__title">
