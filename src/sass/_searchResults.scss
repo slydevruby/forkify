@@ -14,6 +14,7 @@
 .pagination {
   margin-top: auto;
   padding: 0 3.5rem;
+  display: flex;
 
   &::after {
     content: '';
@@ -21,12 +22,20 @@
     clear: both;
   }
 
+  &__count {
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  color: base.$color-primary;
+  font-size: 1.3rem;    
+  }
+
   &__btn {
     &--prev {
-      float: left;
+      // float: left;
     }
     &--next {
-      float: right;
+      // float: right;
     }
   }
 }

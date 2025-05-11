@@ -31,6 +31,10 @@ class paginationView extends View {
     });
   }
 
+  #numPages(num) {
+    return `<span class="pagination__count">${num} page(s)</span>`;
+  }
+
   _markUp(data) {
     const curPage = +this._data.page;
 
@@ -46,7 +50,11 @@ class paginationView extends View {
 
     // between
     if (curPage < numPages)
-      return this.#btnNext(curPage + 1) + this.#btnPrev(curPage - 1);
+      return (
+        this.#btnPrev(curPage - 1) +
+        this.#numPages(numPages) +
+        this.#btnNext(curPage + 1)
+      );
     return '';
   }
 }
