@@ -32,8 +32,8 @@ class ResultView extends View {
           </figure>
           <div class="preview__data">
             <h4 class="preview__title">${item.title}</h4>
-            <span>${item.details.cooking_time}</span>
-            <span>${item.details.ingredients.length}</span>
+            <span>${item.details?.cooking_time}</span>
+            <span>${item.details?.ingredients?.length}</span>
             <p class="preview__publisher">${item.publisher}</p>
             <div class="preview__user-generated">
               <svg>

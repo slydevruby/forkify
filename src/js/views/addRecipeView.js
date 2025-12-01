@@ -4,6 +4,9 @@ import icons from '../../img/icons.svg'; // parel 2
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
   _window = document.querySelector('.add-recipe-window');
+  _cartWindow = document.querySelector('.cart-window');
+  _btnCart = document.querySelector('.nav__btn--cart');
+
   _overlay = document.querySelector('.overlay');
   _btnOpen = document.querySelector('.nav__btn--add-recipe');
   _btnClose = document.querySelector('.btn--close-modal');
@@ -30,6 +33,11 @@ class AddRecipeView extends View {
 
   }
 
+  toggleCart() {
+    this._overlay.classList.toggle('hidden');
+    this._cartWindow.classList.toggle('hidden');
+  }
+
   toggleWindow() {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
@@ -41,6 +49,13 @@ class AddRecipeView extends View {
     this._window.classList.toggle('hidden');
   }
 
+  clickOverlay() {
+    this._cartWindow.classList.add('hidden');
+    this._window.classList.add('hidden');
+    this._overlay.classList.toggle('hidden');
+
+  }
+
   click(e) {
     this.toggleWindow();
   }
@@ -48,7 +63,10 @@ class AddRecipeView extends View {
   #addHandlerToggle() {
     this._btnOpen.addEventListener('click', this.click.bind(this));
     this._btnClose.addEventListener('click', this.closeWindow.bind(this));
-    this._overlay.addEventListener('click', this.click.bind(this));
+    this._btnCart.addEventListener('click', this.toggleCart.bind(this));
+
+    this._overlay.addEventListener('click', this.clickOverlay.bind(this));
+    
   }
 
   addHandlerUpload(handler) {

@@ -18,6 +18,7 @@ import addRecipeView from './views/addRecipeView.js';
 // const url = 'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=c1eabf7a-2536-4029-9842-f77f56f3dc5c';
 
 const controlRecipes = async function () {
+  
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;

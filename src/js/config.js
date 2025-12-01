@@ -8,3 +8,4 @@ export const RES_PER_PAGE = 8;
 // https://api.spoonacular.com/food/ingredients/9040/information?apiKey=97fc98de87d14b0b842108ac50d87edd&amount=100
 
 export const FOOD_API_KEY = '97fc98de87d14b0b842108ac50d87edd';
+

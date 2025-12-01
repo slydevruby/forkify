@@ -1,6 +1,7 @@
 import { async } from 'regenerator-runtime/runtime';
 import { API_URL, API_KEY, RES_PER_PAGE } from './config.js';
 import { sendJSON, getJSON } from './helpers.js';
+import { foodAnalyze} from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -27,7 +28,13 @@ export const sortingIngredientsDesc = (a, b) =>
 export const loadRecipe = async function (id) {
   const data = await getJSON(API_URL + id);
   const { recipe } = data.data;
+
+  // const promises = recipe.ingredients.map(async ing => 
+  //   { data: await foodAnalyze(ing.description) } );
+  // console.log(promises);
+  
   state.recipe = recipe;
+
   if (!state.bookmarks) return;
   state.recipe.bookmarked = state.bookmarks.some(
     bookmark => bookmark.id === id,

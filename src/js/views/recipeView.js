@@ -30,7 +30,9 @@ class RecipeView extends View {
   }
 
   _markUp(recipe) {
-    console.log(recipe.ingredients);
+    
+
+    
     return `<figure class="recipe__fig">
           <img src=${recipe.image_url} alt=${recipe.title} class="recipe__img" />
           <h1 class="recipe__title">
@@ -95,6 +97,7 @@ class RecipeView extends View {
               <div class="recipe__description">
                 <span class="recipe__unit">${ing.unit}</span>
                 ${ing.description}
+                  <span class="recipe__cal">[${ing?.calories}]</span>
               </div>
             </li>
             `;

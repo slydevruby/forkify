@@ -20,6 +20,10 @@
   content: "↑";
 }
 
+.search__link::before {
+  content: '↓';
+}
+
 .results {
   list-style: none;
   margin-bottom: 2rem;

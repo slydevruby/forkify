@@ -48,8 +48,19 @@ export const foodGetNutritionById = async function (id, amount = 100) {
 };
 
 export const foodGetCalories = function (prod) {
-  // const prod = JSON.parse(json);
   return prod.nutrition.nutrients.find(item => item.name === 'Calories').amount;
+};
+
+export const foodAnalyze = async function (query) {
+  const query1 = query.replaceAll(' ', '+');
+  const data = await getJSON(`
+    https://api.spoonacular.com/recipes/queries/analyze?apiKey=${FOOD_API_KEY}&q=${query1}`);
+  // console.log(query, data);
+  if (!data.ingredients) return '';
+  if (data.ingredients.length === 0) return '';
+  if (!data.ingredients[0]?.image) return '';
+  if (data.ingredients[0].image) return data.ingredients[0].name;
+  return '';
 };
 
 // export const deleteJSON = async function (url, id) {
@@ -68,10 +79,10 @@ export const foodGetCalories = function (prod) {
 //   }
 // };
 
-
-
 // const prod = await foodGetIdByName('banana');
 // console.log(prod);
 // const nutrition = await foodGetNutritionById(prod.results[0].id);
 // console.log(nutrition);
 // console.log(foodGetCalories(nutrition));
+// const product = await foodAnalyze('apple');
+// console.log(product);

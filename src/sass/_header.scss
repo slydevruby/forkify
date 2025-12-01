@@ -1,4 +1,4 @@
-@use "base";
+@use 'base';
 
 .header {
   grid-area: head;
@@ -103,6 +103,19 @@
     &:hover {
       background-color: base.$color-grey-light-2;
     }
+  }
+}
+.cart {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0 0.8rem 5rem 2rem rgba(base.$color-grey-dark-1, 0.1);
+  background-color: #fff;
+
+  &:hover,
+  .nav__btn--cart:hover + & {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
